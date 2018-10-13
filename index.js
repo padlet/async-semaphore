@@ -130,24 +130,3 @@ function* generator() {
   });
   hook.next(waiting);
 }
-
-
-
-
-// class ExampleSyntax {
-//
-//   async openKeyboardShow() {
-//     const isFocused = await Semaphore.fromNext('isFocused');
-//     this.showingKeyboard();
-//   }
-//
-//   onChange(event) {
-//     Semaphore.dispatch('isFocused', event.isFocused);
-//   }
-//
-//   render() {
-//     return (
-//       <WebView onChange={this.onChange.bind(this)} />
-//     )
-//   }
-// }
