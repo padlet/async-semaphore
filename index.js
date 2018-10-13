@@ -1,4 +1,4 @@
-export class Semaphore {
+class Semaphore {
 
   // Used for creating semaphores, they can be used as local groups, otherwise
   // all of the tags are sent to the global semaphore group.
@@ -89,8 +89,11 @@ export class Semaphore {
 
 // Export the semaphore as an instance, this way it acts like a global, but also
 // has a method which can return a unique instance of the semaphore.
-const global = new Semaphore();
-export default global;
+const GlobalSemaphores = new Semaphore();
+module.exports = {
+    Semaphore: GlobalSemaphores,
+};
+
 
 
 /* * * Generator * * *
