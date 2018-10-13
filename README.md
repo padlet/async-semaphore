@@ -14,10 +14,6 @@ You can import the Semaphore class into your project via the following"
 ```Javascript
 import Semaphore from 'async-semaphore';
 ```
-or
-```Javascript
-const Semaphore = require('async-semaphore');
-```
 
 The Semaphore class is a singleton object, which allows communication across different files. This can come in handy if you have multiple screens which need to pass data to each other. However, this can also cause naming collisions if you are not careful. If you would like a local instance of the Semaphore class, you can use the following method.
 
