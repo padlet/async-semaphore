@@ -62,7 +62,7 @@ class Example {
 ```
 In this example, `method1` is called first, and then pauses its execution. Then `method2` is called, which dispatches the `isFocused` event. This causes the semaphore in `method1` to resolve, and finally the `console.log` statement is called!
 
-##### NOTE: Each time `await Semaphore.fromNext('isFocused')` is called, it will destroy any previous semaphore with the same tag name, if you would like to have multiple semaphores for a single tag, take a look at the `dispatchGroup` section.
+<b>NOTE:</b> Each time `await Semaphore.fromNext('isFocused')` is called, it will destroy any previous semaphore with the same tag name, if you would like to have multiple semaphores for a single tag, take a look at the `dispatchGroup` section.
 
 ### `Semaphore.fromAny(tag)`
 
