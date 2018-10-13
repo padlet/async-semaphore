@@ -169,6 +169,12 @@ Just like the `waitForNext` method, the order of operations matter here, and dis
 
 The following helper methods can come in handy:
 
+To delete all currently active semaphores and cached values for a specific tag, use the following
+
+```Javascript
+Dispatch.remove(tag);
+```
+
 To delete all currently active semaphores and cached values, use the following
 
 ```Javascript
