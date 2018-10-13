@@ -1,9 +1,9 @@
-class Semaphore {
+class SemaphoreClass {
 
   // Used for creating semaphores, they can be used as local groups, otherwise
   // all of the tags are sent to the global semaphore group.
   static instance() {
-    return new Semaphore();
+    return new SemaphoreClass();
   }
 
   // These valyes hold the actice semaphores, as well as any pending valyes
@@ -19,7 +19,6 @@ class Semaphore {
   // and this needs to be called before dispatch.
   waitForNext(tag) {
     this.active[tag] = generator();
-    this.inspect();
     return this.active[tag].next().value;
   }
 
@@ -85,14 +84,20 @@ class Semaphore {
     console.log("[Semaphore] values:", this.values);
     console.log("[Semaphore] pooled:", this.pooled);
   }
+
+  remove(tag) {
+    delete this.active[tag];
+    delete this.values[tag];
+    delete this.pooled[tag];
+  }
 }
 
 // Export the semaphore as an instance, this way it acts like a global, but also
 // has a method which can return a unique instance of the semaphore.
-const GlobalSemaphores = new Semaphore();
-export default GlobalSemaphores;
+// const GlobalSemaphores = new Semaphore();
+// export default GlobalSemaphores;
 
-
+const Semaphore = new SemaphoreClass();
 
 /* * * Generator * * *
 
@@ -128,3 +133,34 @@ function* generator() {
   });
   hook.next(waiting);
 }
+
+/* * * * * Test Examples * * * * * */
+
+class Test {
+
+  constructor() {
+    this.keyboardDidShow();
+    Semaphore.inspect();
+    Semaphore.remove('isFocused');
+    this.javascriptFromWebview({
+      type:"focus",
+      data:true,
+    });
+
+  }
+
+  async keyboardDidShow() {
+    console.log("keyboardDidShow called!");
+    const isFocused = await Semaphore.waitForAny('isFocused');
+    console.log("Keyboard did show finished with data:", isFocused);
+  }
+
+  javascriptFromWebview(event) {
+    console.log("javascriptFromWebview called!");
+    if (event.type == "focus") {
+      Semaphore.dispatch('isFocused', event.data);
+    }
+  }
+}
+
+const test = new Test();
