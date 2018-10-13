@@ -9,6 +9,10 @@ You can import the Semaphore class into your project via the following"
 ```Javascript
 import Semaphore from 'async-semaphore';
 ```
+or
+```Javascript
+const Semaphore = require('async-semaphore');
+```
 
 The Semaphore class is a singleton object, which allows communication across different files. This can come in handy if you have multiple screens which need to pass data to each other. However, this can also cause naming collisions if you are not careful. If you would like a local instance of the Semaphore class, you can use the following method.
 
@@ -28,7 +32,9 @@ or
 const data = await Semaphore.fromAny(tag);
 ```
 
-The main difference between the two is that `Semaphore.fromNext` will wait for the next `dispatch` event before resolving, while `Semaphore.fromAny` will resolve right away if the `dispatch` event has already occured. Both must be called inside an async marked function.
+The main difference between the two is that `Semaphore.fromNext` will wait for the next `dispatch` event before resolving, while `Semaphore.fromAny` will resolve right away if the `dispatch` event has already occured.
+
+<b>NOTE:</b> Both functions return a promise. To use the functions with the `await` keyword, you must ensure that the parent function is marked as `async`.
 
 To dispatch a semaphore, use the following
 
