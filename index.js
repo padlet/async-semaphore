@@ -133,34 +133,3 @@ function* generator() {
   });
   hook.next(waiting);
 }
-
-/* * * * * Test Examples * * * * * */
-
-class Test {
-
-  constructor() {
-    this.keyboardDidShow();
-    Semaphore.inspect();
-    Semaphore.remove('isFocused');
-    this.javascriptFromWebview({
-      type:"focus",
-      data:true,
-    });
-
-  }
-
-  async keyboardDidShow() {
-    console.log("keyboardDidShow called!");
-    const isFocused = await Semaphore.waitForAny('isFocused');
-    console.log("Keyboard did show finished with data:", isFocused);
-  }
-
-  javascriptFromWebview(event) {
-    console.log("javascriptFromWebview called!");
-    if (event.type == "focus") {
-      Semaphore.dispatch('isFocused', event.data);
-    }
-  }
-}
-
-const test = new Test();
