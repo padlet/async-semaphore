@@ -90,9 +90,7 @@ class Semaphore {
 // Export the semaphore as an instance, this way it acts like a global, but also
 // has a method which can return a unique instance of the semaphore.
 const GlobalSemaphores = new Semaphore();
-module.exports = {
-    Semaphore: GlobalSemaphores,
-};
+export default GlobalSemaphores;
 
 
 
