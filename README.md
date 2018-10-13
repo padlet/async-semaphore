@@ -179,3 +179,5 @@ To inspect the current contents of a semaphore class, use the following
 ```Javascript
 Dispatch.inspect();
 ```
+
+#####<i> Made with ♥ from the Padlet Team<i>
