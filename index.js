@@ -17,7 +17,7 @@ class Semaphore {
   // The standard semaphore logic which waits for the dispatch method below
   // to be called before resolving the promise. In this case, order matters
   // and this needs to be called before dispatch.
-  fromNext(tag) {
+  waitForNext(tag) {
     this.active[tag] = generator();
     this.inspect();
     return this.active[tag].next().value;
@@ -27,11 +27,11 @@ class Semaphore {
   // that cooresponds to the current tag. If not, it will set up a semaphore
   // that will resolve the next time that value is dispatched. Can cause naming
   // conflicts with the regular waitFor method.
-  fromAny(tag) {
+  waitForAny(tag) {
     const value = this.values[tag];
     if (value) {
       delete this.values[tag];
-      return value;
+      return Promise.resolve(value);
     } else {
       return this.waitForNext(tag);
     }
@@ -52,7 +52,7 @@ class Semaphore {
   // The standard semaphore logic which waits for the dispatch method below
   // to be called before resolving the promise. In this case, order matters
   // and this needs to be called before dispatch.
-  fromGroup(group) {
+  waitForGroup(group) {
     if (!this.pooled[group]) this.pooled[group] = [];
     const member = generator();
     this.pooled[group].push(member);
