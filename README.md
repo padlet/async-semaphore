@@ -98,6 +98,10 @@ In this example `method2` is called first. Since there is no active semaphore fo
 
 This can come in handy if you are unsure of the order of operations, but would like to ensure a value is present before continuing execution. Note that the value will be consumed on first use.
 
+# `Semaphore.dispatch(tag, data)`
+
+The semaphore `dispatch` method is used to trigger any active semaphores that are currently paused. It takes a tag as a string, and a data object that can be any value to be returned. The `dispatch` method can be used for both `Semaphore.waitForNext` and `Semaphore.waitForAny`, and if no active semaphores are found for the tag provided, it will cache the value for the next `Semaphore.waitForAny` invocation.
+
 # Groups
 
 In the above examples, the semaphores were <b>1 to 1</b>, meaning that only one semaphore could be active for a single tag at a time. This may be great for most use cases, but there can be times when you would like a <b>1 to many</b> pattern. This is where dispatch groups come in...
