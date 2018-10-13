@@ -122,14 +122,34 @@ The logic here is somewhat complicated, but flows like this:
 
 */
 function* generator() {
-  let hook;
-  let waiting = yield new Promise(resolve => {
-    function* wait() {
-      const result = yield;
-      resolve(result);
-    }
+  let hook, waiting = yield new Promise(resolve => {
+    function* wait() { resolve(yield) }
     hook = wait();
-    hook.next().value;
+    hook.next();
   });
   hook.next(waiting);
 }
+
+/* * * * * Test Examples * * * * * */
+
+class GroupTest {
+  constructor() {
+    this.group(1);
+    this.group(2);
+    this.group(3);
+    this.group(4);
+    this.group(5);
+    this.execute();
+  }
+
+  async group(id) {
+    await Semaphore.waitForGroup('friends');
+    console.log("Friends resolved with: ", id);
+  }
+
+  execute() {
+    Semaphore.dispatchGroup('friends');
+  }
+}
+
+const test = new GroupTest();
