@@ -1,6 +1,15 @@
 # async-semaphore
 A simple semaphore class written in JavaScript based off promises and generators. 
 
+# Installation
+
+```
+yard add async-semaphore
+```
+or
+```
+npm 
+
 
 # Setup
 
