@@ -18,16 +18,17 @@ const localSemaphore = Semaphore.instance();
 
 # Usage
 
-To create a semaphore that will pause execution and wait for a value, you can use the following methods:
+To create a semaphore that will pause execution and wait for a value, use the following methods:
 
 ```Javascript
 const data = await Semaphore.fromNext(tag);
 ```
+or
 ```Javascript
 const data = await Semaphore.fromAny(tag);
 ```
 
-The main difference between the two is that `Semaphore.fromNext` will wait for the next `dispatch` event before resolving, while `Semaphore.fromAny` will resolve right away if the `dispatch` event has already occured.
+The main difference between the two is that `Semaphore.fromNext` will wait for the next `dispatch` event before resolving, while `Semaphore.fromAny` will resolve right away if the `dispatch` event has already occured. Both must be called inside an async marked function.
 
 To dispatch a semaphore, use the following
 
