@@ -180,4 +180,4 @@ To inspect the current contents of a semaphore class, use the following
 Dispatch.inspect();
 ```
 
-<i style="color:gray;"> Made with ♥ from the Padlet Team<i>
+<i> Made with ♥ from the Padlet Team<i>
