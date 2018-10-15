@@ -9,7 +9,7 @@ yard add async-semaphore
 
 # Setup
 
-You can import the Semaphore class into your project via the following"
+You can import the Semaphore class into your project via the following
 
 ```Javascript
 import Semaphore from 'async-semaphore';
