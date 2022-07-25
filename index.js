@@ -6,7 +6,7 @@ class SemaphoreClass {
     return new SemaphoreClass();
   }
 
-  // These valyes hold the actice semaphores, as well as any pending valyes
+  // These values hold the actice semaphores, as well as any pending valyes
   // that can be used the next time the waitForAny method is invoked.
   constructor() {
     this.active = {};
